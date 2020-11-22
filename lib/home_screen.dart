@@ -18,8 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
           if (deepLink != null) {
             _handleDeeplinks(deepLink);
-            //Navigator.pushNamed(context, deepLink.path, arguments:
-            //{'title' : deepLink.queryParameters['title'], 'id' : deepLink.queryParameters['id']});
           }
         },
         onError: (OnLinkErrorException e) async {
