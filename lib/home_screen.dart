@@ -104,31 +104,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _launchCardStatementScreen() async {
-    String url = await _createCardStatementLink(67);
+    String url = await _createDeeplinkUri('https://dynamiclinkdemo.com/cardStatement?cardNumber=67');
     _launchUrl(url);
   }
 
   void _launchPaymentHistoryScreen() async {
-    String url = await _createPaymentHistoryLink(67, 'primary');
+    String url = await _createDeeplinkUri('https://dynamiclinkdemo.com/paymentHistory?cardNumber=67&cardType=primary');
     _launchUrl(url);
   }
 
-  Future<String> _createCardStatementLink(int cardNumber) async {
+  Future<String> _createDeeplinkUri(String deeplink) async {
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: 'https://tanya.page.link',
-      link: Uri.parse('https://dynamiclinkdemo.com/cardStatement?cardNumber=$cardNumber'),
-      androidParameters: AndroidParameters(
-        packageName: 'com.example.dynamic_link_demo',
-      ),
-    );
-    Uri uri = await parameters.buildUrl();
-    return uri.toString();
-  }
-
-  Future<String> _createPaymentHistoryLink(int cardNumber, String cardType) async {
-    final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: 'https://tanya.page.link',
-      link: Uri.parse('https://dynamiclinkdemo.com/paymentHistory?cardNumber=$cardNumber&cardType=$cardType'),
+      link: Uri.parse(deeplink),
       androidParameters: AndroidParameters(
         packageName: 'com.example.dynamic_link_demo',
       ),
